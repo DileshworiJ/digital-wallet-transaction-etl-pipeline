@@ -6,11 +6,11 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
-OUTPUT_PATH = "/opt/airflow/dags/esewa_transactions.csv"
+OUTPUT_PATH = "/opt/airflow/dags/digital_wallet_transactions.csv"
 
 # ==================== 1. EXTRACT TASK ====================
 def generate_and_save_esewa_data():
-    print("--- STARTING ESEWA DATA EXTRACTION ---")
+    print("--- STARTING DIGITAL WALLET DATA EXTRACTION ---")
     payment_modes = ["Wallet Transfer", "QR Payment", "Bank Transfer", "Utility Bill Pay"]
     statuses = ["SUCCESS", "SUCCESS", "SUCCESS", "FAILED"]
     
@@ -33,7 +33,7 @@ def generate_and_save_esewa_data():
 
 # ==================== 2. TRANSFORM TASK ====================
 def transform_and_calculate_metrics(**context):
-    print("--- STARTING ESEWA DATA TRANSFORMATION ---")
+    print("--- STARTING DIGITAL WALLELT DATA TRANSFORMATION ---")
     
     if not os.path.isfile(OUTPUT_PATH):
         print("No transaction file found to transform.")
